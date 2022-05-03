@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:clone_chat/NewScreen/LandingScreen.dart';
 import 'package:clone_chat/Screens/CameraScreen.dart';
 import 'package:clone_chat/Screens/Homescreen.dart';
 import 'package:clone_chat/Screens/LoginScreen.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.lightBlue[800],
         fontFamily: "OpenSans",
       ),
-      home: const LoginScreen(),
+      home: const LandingScreen(),
     );
   }
 }
