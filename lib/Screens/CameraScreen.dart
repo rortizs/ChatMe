@@ -12,7 +12,9 @@ late List<CameraDescription> cameras;
 class CameraScreen extends StatefulWidget {
   const CameraScreen({
     Key? key,
+    required this.onImageSend,
   }) : super(key: key);
+  final Function onImageSend;
 
   @override
   State<CameraScreen> createState() => _CameraScreenState();
@@ -166,7 +168,12 @@ class _CameraScreenState extends State<CameraScreen> {
 
   void takePhoto(BuildContext context) async {
     XFile image = await _cameraController.takePicture();
-    Navigator.push(context,
-        MaterialPageRoute(builder: (builder) => CameraView(image: image.path)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (builder) => CameraView(
+                  path: image.path,
+                  onImageSend: widget.onImageSend,
+                )));
   }
 }

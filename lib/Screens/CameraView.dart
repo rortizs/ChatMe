@@ -4,8 +4,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class CameraView extends StatelessWidget {
-  final String image;
-  const CameraView({Key? key, required this.image}) : super(key: key);
+   CameraView({Key? key, required this.path, required this.onImageSend})
+      : super(key: key);
+
+  final String path;
+  final Function onImageSend;
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,7 @@ class CameraView extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height - 150,
               child: Image.file(
-                File(image),
+                File(path),
                 fit: BoxFit.cover,
               ),
             ),
@@ -60,25 +64,33 @@ class CameraView extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                 child: TextFormField(
+                  controller: _controller,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 17,
                   ),
                   maxLines: 6,
                   minLines: 1,
-                  decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Add a caption....",
-                      prefixIcon: Icon(
-                        Icons.add_photo_alternate,
-                        color: Colors.white,
-                        size: 17,
-                      ),
-                      hintStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                      ),
-                      suffixIcon: CircleAvatar(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Add a caption....",
+                    prefixIcon: const Icon(
+                      Icons.add_photo_alternate,
+                      color: Colors.white,
+                      size: 17,
+                    ),
+                    hintStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                    ),
+                    suffixIcon: InkWell(
+                      onTap: () {
+                        onImageSend(
+                          path,
+                          _controller.text.trim(),
+                          );
+                      },
+                      child: const CircleAvatar(
                         radius: 27,
                         backgroundColor: Colors.blueAccent,
                         child: Icon(
@@ -86,7 +98,9 @@ class CameraView extends StatelessWidget {
                           color: Colors.white,
                           size: 27,
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             )

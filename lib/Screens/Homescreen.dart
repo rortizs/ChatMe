@@ -7,10 +7,15 @@ import 'package:clone_chat/pages/StatusPage.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, required this.chatmodels, required this.sourchat})
+  const HomeScreen(
+      {Key? key,
+      required this.chatmodels,
+      required this.sourchat,
+      required this.onImageSend})
       : super(key: key);
   final List<ChatModel> chatmodels;
   final ChatModel sourchat;
+  final Function onImageSend;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -84,7 +89,9 @@ class _HomeScreenState extends State<HomeScreen>
       body: TabBarView(
         controller: _controller,
         children: [
-          const CameraPage(),
+          CameraPage(
+            onImageSend: widget.onImageSend,
+          ),
           ChatPage(
             chatmodels: widget.chatmodels,
             sourchat: widget.sourchat,

@@ -1,4 +1,5 @@
 // ignore_for_file: file_names, sized_box_for_whitespace
+import 'package:clone_chat/NewScreen/LoginPage.dart';
 import 'package:clone_chat/Screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -70,10 +71,8 @@ class LandingScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (builder) => const LoginScreen()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (builder) => LoginPage()));
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width - 110,

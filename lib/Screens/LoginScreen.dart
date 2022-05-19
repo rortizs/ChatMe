@@ -60,7 +60,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     context,
                     MaterialPageRoute(
                         builder: (builder) => HomeScreen(
-                            chatmodels: chatmodels, sourchat: sourceChat)));
+                            chatmodels: chatmodels,
+                            sourchat: sourceChat,
+                            onImageSend: (image) {
+                              // ignore: avoid_print
+                              print(image);
+                            })));
               },
               child: ButtonCard(
                   name: chatmodels[index].name, icon: Icons.person))),

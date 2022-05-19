@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.lightBlue[800],
         fontFamily: "OpenSans",
       ),
-      home: const LandingScreen(),
+      home: const LoginScreen(),
     );
   }
 }
